@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('general/head') %>
+    <link rel="stylesheet" href="/stylesheets/board.css">
+    <script src="/javascripts/colorfinder.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-5" style="font-weight: 700;">
+        <%= title %>
+      </h1>
+      <div id="game-area" class="d-flex justify-content-center align-items-center mt-4">
+        <div class="w-25">
+          <h2 class="text-center" style="font-weight: 700;">作者</h2>
+          <h3 class="text-center mt-3">
+            歐德五 黃憶姿<br/>
+            資科五 林瀚軒<br />
+            會計一 周伯恩<br />
+            會計一 余亞蓁<br />
+            會計一 陳振偉<br />
+            會計一 林芷彤<br />
+            會計一 陳致軒<br />
+            會計一 陳姿妤
+          </h3>
+        </div>
+        <div id="board" class="lv1">
+          <div class="d-block" style="background-color: #ffd84e;"></div>
+          <div class="d-block" style="background-color: #ffd84e;"></div>
+          <div class="d-block" style="background-color: #ffd84e;"></div>
+          <div class="d-block" style="background-color: #ffd84e;"></div>
+        </div>
+        <div class="w-25">
+          <h2 id="text-curr-round" class="text-center" style="font-weight: 700;">ROUND 1</h2>
+        </div>
+      </div>
+    </div>
+    <%- include('general/foot') %>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+#board {
+  width: 500px;
+  height: 500px;
+  background-color: #212529;
+  padding: 5px;
+  border-radius: 10px;
+  overflow: hidden; }
+  #board div {
+    cursor: pointer;
+    float: left;
+    border: 5px solid #212529;
+    border-radius: 10px; }
+  #board.lv1 div {
+    width: 50%;
+    height: 50%; }
+  #board.lv2 div {
+    width: 33.33%;
+    height: 33.33%; }
+  #board.lv3 div {
+    width: 25%;
+    height: 25%; }
+  #board.lv4 div {
+    width: 20%;
+    height: 20%; }
+  #board.lv5 div {
+    width: 16.66%;
+    height: 16.66%; }
+  #board.lv6 div {
+    width: 14.28%;
+    height: 14.28%; }
+  #board.lv7 div {
+    width: 12.5%;
+    height: 12.5%; }
+  #board.lv8 div {
+    width: 11.11%;
+    height: 11.11%; }
+  #board.lv9 div {
+    width: 10%;
+    height: 10%; }
+
+/*# sourceMappingURL=board.css.map */

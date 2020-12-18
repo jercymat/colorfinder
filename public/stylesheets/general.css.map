@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "general.css",
+	"sources": [
+		"general.scss"
+	],
+	"names": [],
+	"mappings": "AAAA,OAAO,CAAC,qFAAI;AAEZ,AAAA,IAAI,CAAC;EACH,WAAW,EAAE,yBAAyB;EACtC,gBAAgB,EAAE,IAAI,GACvB"
+}
