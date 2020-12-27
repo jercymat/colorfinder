@@ -23,20 +23,58 @@ var CURR_ROUND = 0 // 目前關卡
 var PREV_DIFFTILE = -1; // 上次異色色塊的編號
 var CURR_DIFFTILE = -1; // 異色色塊的編號
 
+var timer = null;
+
 // 初始化遊戲
 $(document).ready(() => {
-  genNewTiles(CURR_ROUND);
+  // genNewTiles(CURR_ROUND);
 });
 
 // 選到正確的色塊即進入下一關
 $(document).on('click', '#board > div', function() {
   let clickedID = parseInt($(this).attr('id').substring(5))
-  if (clickedID == CURR_DIFFTILE) {
-    CURR_ROUND++;
-    $('#text-curr-round').text(`ROUND ${CURR_ROUND+1}`);
-    genNewTiles(CURR_ROUND);
-  }
+  gameAnswering(clickedID);
 });
+
+$(document).on('click', '#btn-start-game', function () {
+  startGame();
+});
+
+$(document).on('click', '#btn-back-home', function() {
+  resetGame();
+});
+
+function resetGame() {
+  $('#result').addClass('d-none');
+  $('#btn-start-game').removeClass('d-none');
+  $('#text-curr-round').text('ROUND 1');
+
+  CURR_ROUND = 0;
+  PREV_DIFFTILE = -1;
+  CURR_DIFFTILE = -1;
+}
+
+function startGame() {
+  $('#btn-start-game').addClass('d-none');
+  genNewTiles(CURR_ROUND);
+  timer = new Timer(60);
+  timer.start(() => {
+    showResult();
+  });
+}
+
+// 選擇色塊
+// @param:  tileNo: Int | 選擇色塊編號
+function gameAnswering(tileNo) {
+  if (tileNo == CURR_DIFFTILE) {
+    timer.updateTime(1);
+    CURR_ROUND++;
+    $('#text-curr-round').text(`ROUND ${CURR_ROUND + 1}`);
+    genNewTiles(CURR_ROUND);
+  } else {
+    timer.updateTime(-2);
+  }
+}
 
 // @param:  round: Int | 回合
 function genNewTiles(round) {
@@ -70,4 +108,22 @@ function genNewTiles(round) {
         style: `background-color: #${i == CURR_DIFFTILE ? diffTileColor : sameTileColor};`
       }));
   }
+}
+
+function showResult() {
+  let hintList = [
+    "色盲，難以分清各種綠色植物。該看醫生囉!",
+    "視力很差，幾乎色盲，必須靠著嗅覺接收氣味顆粒，透過住鼻器的轉換，才可將嗅覺轉換為影像。",
+    "眼前畫面只有黑與白二色，即使身存在五彩繽紛的海水中，卻無法欣賞，令人心疼。與蛇相同一樣需要透過別的感官協助視力，例如:嗅覺等。",
+    "能分出來哪個顏色不一樣嗎？如果可以，你的眼力就達到刺蝟程度了！",
+    "在處理綠色這個顏色的時候，牛眼呈現更多的是紅色和橙色的效果。牛所看出的景象有點類似復古照片的感覺。",
+    "貓咪不全然是色盲，它們能夠分辨出藍色、綠色、紫色、黃色。對於紅色、橘色、棕色這幾種顏色，貓咪看到的是黑色到灰色階。",
+    "蜜蜂的眼睛能分辨光的色澤，與人眼有些相似，主要差別是蜜蜂對紅色不敏感，對紫外光線特別敏感。除此之外，蜜蜂眼睛中的白色是由黃、藍、紫3種顏色（或2種補色）混合而成，而不是七色光混合而成。",
+    "猴子又分成三種：新世界猴、舊世界猴和猿。舊大陸猴的視覺能力通常與人類相近，和我們一樣有三色視覺能力。",
+    "與人類相比，鳥類的眼睛色彩更鮮明，更多樣！既有常見的褐色虹膜，又有灰色、紅色、綠色、黃色等等。鳥眼中的世界，更有童話色彩!",
+    "能答那麼多題，你一定是「鷹眼」啦!老鷹的視力敏銳度約為人眼8倍!!"
+  ]
+
+  $('#board').addClass('d-none');
+  $('#result').removeClass('d-none');
 }

@@ -4,19 +4,21 @@
     <title><%= title %></title>
     <%- include('general/head') %>
     <link rel="stylesheet" href="/stylesheets/board.css">
+    <link rel="stylesheet" href="/stylesheets/result.css">
     <script src="/javascripts/colorfinder.js"></script>
+    <script src="/javascripts/timer.js"></script>
   </head>
   <body>
     <div class="container">
       <h1 class="text-center mt-5" style="font-weight: 700;">
         <%= title %>
       </h1>
-      <div id="game-area" class="d-flex justify-content-center align-items-center mt-4">
-        <div class="w-25">
+      <div class="row mt-4">
+        <div class="col-12 col-lg-3">
           <h2 class="text-center" style="font-weight: 700;">作者</h2>
           <h3 class="text-center mt-3">
-            歐德五 黃憶姿<br/>
             資科五 林瀚軒<br />
+            歐德五 黃憶姿<br />
             會計一 周伯恩<br />
             會計一 余亞蓁<br />
             會計一 陳振瑋<br />
@@ -25,14 +27,23 @@
             會計一 陳姿妤
           </h3>
         </div>
-        <div id="board" class="lv1">
-          <div class="d-block" style="background-color: #ffd84e;"></div>
-          <div class="d-block" style="background-color: #ffd84e;"></div>
-          <div class="d-block" style="background-color: #ffd84e;"></div>
-          <div class="d-block" style="background-color: #ffd84e;"></div>
+        <div class="col-12 col-lg">
+          <button type="button" id="btn-start-game" class="btn btn-danger btn-lg px-5">開始遊戲</button>
+          <div id="board" class="lv1 d-none">
+            <div class="d-block" style="background-color: #ffd84e;"></div>
+            <div class="d-block" style="background-color: #ffd84e;"></div>
+            <div class="d-block" style="background-color: #ffd84e;"></div>
+            <div class="d-block" style="background-color: #ffd84e;"></div>
+          </div>
+          <div id="result" class="d-none p-3">
+            <img id="result-img" class="rounded mx-auto d-block w-100" src="/images/game-results/0.jpg" alt="level-0">
+            <h3 id="result-hint" class="text-center mt-3 px-5">色盲，難以分清各種綠色植物。該看醫生囉！</h3>
+            <button type="button" id="btn-back-home" class="btn btn-dark mx-auto mt-4 d-block px-5">回到遊戲首頁</button>
+          </div>
         </div>
-        <div class="w-25">
-          <h2 id="text-curr-round" class="text-center" style="font-weight: 700;">ROUND 1</h2>
+        <div class="col-12 col-lg-3">
+          <h2 id="text-curr-round" style="font-weight: 700;">ROUND 1</h2>
+          <h2 id="timer" style="font-weight: 700;">60'00"</h2>
         </div>
       </div>
     </div>
