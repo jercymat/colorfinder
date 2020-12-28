@@ -1,6 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700&display=swap");
+html {
+  height: 100vh; }
+  html.animated {
+    transition: box-shadow .75s linear, -webkit-box-shadow .75s linear; }
+  html.warn {
+    box-shadow: inset 0 0 3rem 1rem #DC3545;
+    -webkit-box-shadow: inset 0 0 3rem 1rem #DC3545;
+    -moz-box-shadow: inset 0 0 3rem 1rem #DC3545; }
+
 body {
   font-family: 'Encode Sans', sans-serif;
   background-color: #ddd; }
+
+.time-delta {
+  transition: opacity .75s linear;
+  margin-bottom: -1.5rem; }
 
 /*# sourceMappingURL=general.css.map */

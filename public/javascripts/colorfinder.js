@@ -70,9 +70,12 @@ function gameAnswering(tileNo) {
     timer.updateTime(1);
     CURR_ROUND++;
     $('#text-curr-round').text(`ROUND ${CURR_ROUND + 1}`);
+    timeDelta(true);
     genNewTiles(CURR_ROUND);
   } else {
     timer.updateTime(-2);
+    timeDelta(false);
+    errorAnimation();
   }
 }
 
@@ -166,4 +169,31 @@ function showResult() {
   $('#result-title').text(levelTitleList[level]);
   $('#board').addClass('d-none');
   $('#result').removeClass('d-none');
+}
+
+async function errorAnimation() {
+  $('html').addClass('warn');
+  await new Promise(r => setTimeout(r, 10));
+  $('html').addClass('animated');
+  $('html').removeClass('warn');
+  await new Promise(r => setTimeout(r, 750));
+  $('html').removeClass('animated');
+}
+
+async function timeDelta(postiveOrNegative) {
+  let now = new Date();
+  let timestamp = Math.floor(now);
+  let label = $('<h2/>', {
+    id: `time-delta-${timestamp}`,
+    class: `time-delta ${postiveOrNegative ? 'text-success' : 'text-danger'}`,
+    style: 'font-weight: 700;'
+  }).text(postiveOrNegative ? '+1s' : '-2s');
+
+  console.log(label);
+
+  $('#timer').after(label);
+  await new Promise(r => setTimeout(r, 10));
+  $(`#time-delta-${timestamp}`).css('opacity', '0');
+  await new Promise(r => setTimeout(r, 750));
+  $(`#time-delta-${timestamp}`).remove();
 }
