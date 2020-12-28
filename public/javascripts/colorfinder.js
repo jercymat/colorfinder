@@ -46,7 +46,7 @@ $(document).on('click', '#btn-back-home', function() {
 
 function resetGame() {
   $('#result').addClass('d-none');
-  $('#btn-start-game').removeClass('d-none');
+  $('#game-start-area').removeClass('d-none');
   $('#text-curr-round').text('ROUND 1');
 
   CURR_ROUND = 0;
@@ -55,7 +55,7 @@ function resetGame() {
 }
 
 function startGame() {
-  $('#btn-start-game').addClass('d-none');
+  $('#game-start-area').addClass('d-none');
   genNewTiles(CURR_ROUND);
   timer = new Timer(60);
   timer.start(() => {
@@ -111,19 +111,59 @@ function genNewTiles(round) {
 }
 
 function showResult() {
+  let levelTitleList = ['白天的蜥蜴', '蛇', '鯊魚', '刺蝟', '牛', '貓', '蜜蜂', '猴子', '鳥', '老鷹'];
   let hintList = [
-    "色盲，難以分清各種綠色植物。該看醫生囉!",
-    "視力很差，幾乎色盲，必須靠著嗅覺接收氣味顆粒，透過住鼻器的轉換，才可將嗅覺轉換為影像。",
-    "眼前畫面只有黑與白二色，即使身存在五彩繽紛的海水中，卻無法欣賞，令人心疼。與蛇相同一樣需要透過別的感官協助視力，例如:嗅覺等。",
-    "能分出來哪個顏色不一樣嗎？如果可以，你的眼力就達到刺蝟程度了！",
-    "在處理綠色這個顏色的時候，牛眼呈現更多的是紅色和橙色的效果。牛所看出的景象有點類似復古照片的感覺。",
-    "貓咪不全然是色盲，它們能夠分辨出藍色、綠色、紫色、黃色。對於紅色、橘色、棕色這幾種顏色，貓咪看到的是黑色到灰色階。",
-    "蜜蜂的眼睛能分辨光的色澤，與人眼有些相似，主要差別是蜜蜂對紅色不敏感，對紫外光線特別敏感。除此之外，蜜蜂眼睛中的白色是由黃、藍、紫3種顏色（或2種補色）混合而成，而不是七色光混合而成。",
-    "猴子又分成三種：新世界猴、舊世界猴和猿。舊大陸猴的視覺能力通常與人類相近，和我們一樣有三色視覺能力。",
-    "與人類相比，鳥類的眼睛色彩更鮮明，更多樣！既有常見的褐色虹膜，又有灰色、紅色、綠色、黃色等等。鳥眼中的世界，更有童話色彩!",
-    "能答那麼多題，你一定是「鷹眼」啦!老鷹的視力敏銳度約為人眼8倍!!"
+    '色盲，難以分清各種綠色植物。該看醫生囉!',
+    '視力很差，幾乎色盲，必須靠著嗅覺接收氣味顆粒，透過住鼻器的轉換，才可將嗅覺轉換為影像。',
+    '眼前畫面只有黑與白二色，即使身存在五彩繽紛的海水中，卻無法欣賞，令人心疼。與蛇相同一樣需要透過別的感官協助視力，例如:嗅覺等。',
+    '能分出來哪個顏色不一樣嗎？如果可以，你的眼力就達到刺蝟程度了！',
+    '在處理綠色這個顏色的時候，牛眼呈現更多的是紅色和橙色的效果。牛所看出的景象有點類似復古照片的感覺。',
+    '貓咪不全然是色盲，它們能夠分辨出藍色、綠色、紫色、黃色。對於紅色、橘色、棕色這幾種顏色，貓咪看到的是黑色到灰色階。',
+    '蜜蜂的眼睛能分辨光的色澤，與人眼有些相似，主要差別是蜜蜂對紅色不敏感，對紫外光線特別敏感。除此之外，蜜蜂眼睛中的白色是由黃、藍、紫3種顏色（或2種補色）混合而成，而不是七色光混合而成。',
+    '猴子又分成三種：新世界猴、舊世界猴和猿。舊大陸猴的視覺能力通常與人類相近，和我們一樣有三色視覺能力。',
+    '與人類相比，鳥類的眼睛色彩更鮮明，更多樣！既有常見的褐色虹膜，又有灰色、紅色、綠色、黃色等等。鳥眼中的世界，更有童話色彩!',
+    '能答那麼多題，你一定是「鷹眼」啦!老鷹的視力敏銳度約為人眼8倍!!'
   ]
+  var level = 0;
 
+  switch (true) {
+    case (CURR_ROUND == 0):
+      level = 0;
+      break;
+    case (CURR_ROUND <= 4):
+      level = 1;
+      break;
+    case (CURR_ROUND <= 8):
+      level = 2;
+      break;
+    case (CURR_ROUND <= 15):
+      level = 3;
+      break;
+    case (CURR_ROUND <= 20):
+      level = 4;
+      break;
+    case (CURR_ROUND <= 25):
+      level = 5;
+      break;
+    case (CURR_ROUND <= 30):
+      level = 6;
+      break;
+    case (CURR_ROUND <= 40):
+      level = 7;
+      break;
+    case (CURR_ROUND <= 50):
+      level = 8;
+      break;
+    default:
+      level = 9;
+      break;
+  }
+
+  console.log(`level: ${level}`);
+
+  $('#result-img').attr('src', `/images/game-results/${level}.jpg`);
+  $('#result-hint').text(hintList[level]);
+  $('#result-title').text(levelTitleList[level]);
   $('#board').addClass('d-none');
   $('#result').removeClass('d-none');
 }
