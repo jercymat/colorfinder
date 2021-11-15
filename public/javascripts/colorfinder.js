@@ -19,7 +19,7 @@ let COLORS = [
   ["cb7379", "cb786e"],
   ["9b1e14", "9b2423"]
 ]; // 所有顏色
-var CURR_ROUND = 0 // 目前關卡
+var CURR_ROUND = 0; // 目前關卡
 var PREV_DIFFTILE = -1; // 上次異色色塊的編號
 var CURR_DIFFTILE = -1; // 異色色塊的編號
 
@@ -32,7 +32,7 @@ $(document).ready(() => {
 
 // 選到正確的色塊即進入下一關
 $(document).on('click', '#board > div', function() {
-  let clickedID = parseInt($(this).attr('id').substring(5))
+  let clickedID = parseInt($(this).attr('id').substring(5));
   gameAnswering(clickedID);
 });
 
@@ -126,7 +126,7 @@ function showResult() {
     '猴子又分成三種：新世界猴、舊世界猴和猿。舊大陸猴的視覺能力通常與人類相近，和我們一樣有三色視覺能力。',
     '與人類相比，鳥類的眼睛色彩更鮮明，更多樣！既有常見的褐色虹膜，又有灰色、紅色、綠色、黃色等等。鳥眼中的世界，更有童話色彩!',
     '能答那麼多題，你一定是「鷹眼」啦!老鷹的視力敏銳度約為人眼8倍!!'
-  ]
+  ];
   var level = 0;
 
   switch (true) {
